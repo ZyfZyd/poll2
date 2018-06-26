@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.briup.apps.poll.bean.Question;
-import com.briup.apps.poll.bean.Question;
 import com.briup.apps.poll.service.IQuestionService;
 import com.briup.apps.poll.util.MsgResponse;
 

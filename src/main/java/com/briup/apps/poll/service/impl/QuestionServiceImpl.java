@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.briup.apps.poll.bean.CourseExample;
 import com.briup.apps.poll.bean.Question;
 import com.briup.apps.poll.bean.QuestionExample;
 import com.briup.apps.poll.dao.QuestionMapper;
