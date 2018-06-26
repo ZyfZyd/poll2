@@ -14,13 +14,15 @@ import com.briup.apps.poll.service.ICourseService;
 public class CourseServiceImpl implements ICourseService{
 	@Autowired
 	private CourseMapper courseMapper;
+	
+	//查询
 	@Override
 	public List<Course> findAll() throws Exception {
 		// TODO Auto-generated method stub
 		//创建空模板
 		CourseExample example = new CourseExample();
 		//调用QBE查询，并将查询结果返回
-		return courseMapper.selectByExample(example);
+		return courseMapper.selectByExampleWithBLOBs(example);
 	}
 
 	@Override
@@ -28,7 +30,7 @@ public class CourseServiceImpl implements ICourseService{
 		// TODO Auto-generated method stub
 		CourseExample example = new CourseExample();
 		example.createCriteria().andNameLike(keywords);
-		return courseMapper.selectByExample(example);
+		return courseMapper.selectByExampleWithBLOBs(example);
 	}
 
 	@Override
