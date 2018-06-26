@@ -41,7 +41,7 @@
     <table tableName="poll_grade" domainObjectName="Grade" ></table>
     <table tableName="poll_clazz" domainObjectName="Clazz" ></table>
     <table tableName="poll_user" domainObjectName="User" ></table>
-	<table tableName="poll_option" domainObjectName="Option" ></table>
+	<table tableName="poll_options" domainObjectName="Options" ></table>
     <table tableName="poll_question" domainObjectName="Question" ></table>
     <table tableName="poll_questionnaire" domainObjectName="Questionnaire" ></table>
     <table tableName="poll_qq" domainObjectName="QuestionnaireQuestion" ></table>
