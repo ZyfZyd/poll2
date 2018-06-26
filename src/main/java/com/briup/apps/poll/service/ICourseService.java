@@ -5,7 +5,7 @@ import java.util.List;
 import com.briup.apps.poll.bean.Course;
 
 public interface ICourseService {
-	
+	//查询
 	List<Course> findAll() throws Exception;
 	//通过关键字查询
 	List<Course> query(String keywords) throws Exception;
