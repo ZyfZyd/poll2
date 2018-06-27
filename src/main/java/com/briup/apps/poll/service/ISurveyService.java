@@ -3,6 +3,7 @@ package com.briup.apps.poll.service;
 import java.util.List;
 
 import com.briup.apps.poll.bean.Survey;
+import com.briup.apps.poll.bean.extend.SurveyVM;
 
 public interface ISurveyService {
 	//查询课调信息
@@ -13,4 +14,6 @@ public interface ISurveyService {
 	void save(Survey survey) throws Exception;
 	//修改
 	void update(Survey survey) throws Exception;
+	
+	List<SurveyVM> findAllSurveyVM() throws Exception;
 }

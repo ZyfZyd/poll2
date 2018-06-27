@@ -3,6 +3,7 @@ package com.briup.apps.poll.service;
 import java.util.List;
 
 import com.briup.apps.poll.bean.Answers;
+import com.briup.apps.poll.bean.extend.AnswersVM;
 
 public interface IAnswersService {
 		//查询所有答卷信息
@@ -13,4 +14,6 @@ public interface IAnswersService {
 		void save(Answers answers) throws Exception;
 		//修改
 		void update(Answers answers) throws Exception;
+		
+		List<AnswersVM> findAllAnswersVM() throws Exception;
 }

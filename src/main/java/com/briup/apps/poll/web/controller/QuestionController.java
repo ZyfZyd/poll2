@@ -89,7 +89,6 @@ public class QuestionController {
 					return MsgResponse.error(e.getMessage());
 				}
 			}
-			//查询
 			@GetMapping("findAllQuestionVM")
 			@ApiOperation(value="查询所有的题目信息",notes="每个题目信息包含该题目下所有的选项信息")
 			public MsgResponse findAllQuestionVM(){

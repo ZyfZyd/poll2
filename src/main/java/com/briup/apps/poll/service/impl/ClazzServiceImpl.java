@@ -25,7 +25,7 @@ public class ClazzServiceImpl implements IClazzService{
 		//创建空模板
 		ClazzExample example = new ClazzExample();
 		//调用QBE查询，并将查询结果返回
-		return clazzMapper.selectByExample(example);
+		return clazzMapper.selectByExampleWithBLOBs(example);
 	}
 
 	@Override

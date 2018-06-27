@@ -6,11 +6,20 @@
   	<!-- id name description grade_id charge_id -->
   </select>
   
-  <resultMap type="com.briup.apps.poll.bean.extend.ClazzVM" id="ClazzVMResultMap">
+   <resultMap type="com.briup.apps.poll.bean.extend.ClazzVM" 
+  	id="ClazzVMResultMap">
   	<id column="id" property="id"/>
-  	<result column="name " property="name"/>
-  	<result column="description " property="description"/>
-  	<association  column="grade_id" property="grade" select="com.briup.apps.poll.dao.GradeMapper.selectByPrimaryKey" ></association>
-  	<association column="charge_id" property="charge" select="com.briup.apps.poll.dao.UserMapper.selectByPrimaryKey"></association>
-  </resultMap>
+  	<result column="name" property="name"/>
+  	<result column="description" property="description"/>
+  	<association 
+  		column="grade_id" 
+  		select="com.briup.apps.poll.dao.GradeMapper.selectByPrimaryKey"
+  		property="grade" >
+  	</association>
+  	<association 
+  		column="charge_id" 
+  		select="com.briup.apps.poll.dao.UserMapper.selectByPrimaryKey"
+  		property="charge" >
+</association>
+</resultMap>
 </mapper>

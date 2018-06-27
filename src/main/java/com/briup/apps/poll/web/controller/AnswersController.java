@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.briup.apps.poll.bean.Answers;
+import com.briup.apps.poll.bean.extend.AnswersVM;
 import com.briup.apps.poll.service.IAnswersService;
 import com.briup.apps.poll.util.MsgResponse;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/answers")
@@ -72,22 +74,16 @@ public class AnswersController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
+	@GetMapping("findAllAnswersVM")
+	@ApiOperation(value="查询所有的答卷信息",notes="")
+	public MsgResponse findAllAnswersVM(){
+		try{
+			List<AnswersVM> list=answersService.findAllAnswersVM();
+			return MsgResponse.success("success",list);
+		}catch(Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-}
