@@ -10,11 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.briup.apps.poll.bean.Question;
+import com.briup.apps.poll.bean.extend.QuestionVM;
 import com.briup.apps.poll.service.IQuestionService;
 import com.briup.apps.poll.util.MsgResponse;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/question")
+@Api(description="问题相关接口")
 public class QuestionController {
 	@Autowired
 	private IQuestionService questionService;
@@ -84,5 +89,18 @@ public class QuestionController {
 					return MsgResponse.error(e.getMessage());
 				}
 			}
+			//查询
+			@GetMapping("findAllQuestionVM")
+			@ApiOperation(value="查询所有的题目信息",notes="每个题目信息包含该题目下所有的选项信息")
+			public MsgResponse findAllQuestionVM(){
+				try {
+					List<QuestionVM> list=questionService.findAllQuestionVM();
+					return MsgResponse.success("success", list);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					return MsgResponse.error(e.getMessage());
+				  }
+				}
 		}
 			

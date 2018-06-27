@@ -12,8 +12,11 @@ import com.briup.apps.poll.bean.QuestionnaireQuestion;
 import com.briup.apps.poll.service.IQuestionnaireQuestionService;
 import com.briup.apps.poll.util.MsgResponse;
 
+import io.swagger.annotations.Api;
+
 @RestController
 @RequestMapping("/questionnairequestion")
+@Api(description="问卷问题桥相关接口")
 public class QuestionnaireQuestionController {
 	@Autowired
 	private IQuestionnaireQuestionService questionnairequestionService;

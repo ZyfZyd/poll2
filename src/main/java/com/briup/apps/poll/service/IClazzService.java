@@ -3,6 +3,7 @@ package com.briup.apps.poll.service;
 import java.util.List;
 
 import com.briup.apps.poll.bean.Clazz;
+import com.briup.apps.poll.bean.extend.ClazzVM;
 
 public interface IClazzService {
 	//查询
@@ -13,4 +14,6 @@ public interface IClazzService {
     void save(Clazz clazz) throws Exception;
     //修改
     void update(Clazz clazz) throws Exception;
+    
+    List<ClazzVM> findAllClazzVM() throws Exception;
 }

@@ -17,5 +17,5 @@ public interface IOptionsService {
 			void update(Options Options) throws Exception;
 			//批量删除
 			void batchDelete(List<Long> ids) throws Exception;
-}
+ }
 

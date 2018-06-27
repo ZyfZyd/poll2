@@ -9,16 +9,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.briup.apps.poll.bean.Clazz;
+import com.briup.apps.poll.bean.extend.ClazzVM;
 import com.briup.apps.poll.service.IClazzService;
 import com.briup.apps.poll.util.MsgResponse;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/clazz")
+@Api(description="班级相关接口")
 public class ClazzController {
 	@Autowired
 	private IClazzService clazzService;
     //查询
 	@GetMapping("findAllClazz")
+	@ApiOperation("查询所有的班级信息")
 	public MsgResponse findAllClazz(){
 		try{
 			List<Clazz> list=clazzService.findAll();
@@ -67,5 +73,19 @@ public class ClazzController {
 				return MsgResponse.error(e.getMessage());
 			}
 		}
+		
+		@GetMapping("findAllClazzVM")
+		@ApiOperation(value="查询所有的班级信息",notes="每个班级信息中所属年级和班级所属的班主任的信息")
+		public MsgResponse findAllClazzVM(){
+			try{
+				List<ClazzVM> list=clazzService.findAllClazzVM();
+				return MsgResponse.success("success",list);
+			}catch(Exception e){
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return MsgResponse.error(e.getMessage());
+			}
+		}
+		
 		
 }		

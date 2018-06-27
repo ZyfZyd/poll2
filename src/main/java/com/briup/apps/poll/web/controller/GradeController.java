@@ -12,8 +12,11 @@ import com.briup.apps.poll.bean.Grade;
 import com.briup.apps.poll.service.IGradeService;
 import com.briup.apps.poll.util.MsgResponse;
 
+import io.swagger.annotations.Api;
+
 @RestController
 @RequestMapping("/grade")
+@Api(description="年级相关接口")
 public class GradeController {
 	@Autowired
 	private IGradeService gradeService;

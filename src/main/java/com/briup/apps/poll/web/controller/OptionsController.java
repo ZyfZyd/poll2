@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.briup.apps.poll.bean.Options;
 import com.briup.apps.poll.service.IOptionsService;
 import com.briup.apps.poll.util.MsgResponse;
+
+import io.swagger.annotations.Api;
 	@RestController
 	@RequestMapping("/options")
+	@Api(description="选项相关接口")
     public class OptionsController {
 	
 		@Autowired

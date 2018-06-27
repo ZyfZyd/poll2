@@ -12,8 +12,11 @@ import com.briup.apps.poll.bean.Answers;
 import com.briup.apps.poll.service.IAnswersService;
 import com.briup.apps.poll.util.MsgResponse;
 
+import io.swagger.annotations.Api;
+
 @RestController
 @RequestMapping("/answers")
+@Api(description="答卷相关接口")
 public class AnswersController {
 	@Autowired
 	private IAnswersService answersService;
