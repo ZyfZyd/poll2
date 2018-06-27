@@ -19,7 +19,7 @@ public class OptionsServiceImpl  implements IOptionsService{
 		//创建空模板
 		OptionsExample example = new OptionsExample();
 		//调用QBE查询，并将查询结果返回
-		return optionsMapper.selectByExample(example);
+		return optionsMapper.selectByExampleWithBLOBs(example);
 	}
 	//通过关键字查询
 	@Override
@@ -27,7 +27,7 @@ public class OptionsServiceImpl  implements IOptionsService{
 		// TODO Auto-generated method stub
 		OptionsExample example = new OptionsExample();
 		example.createCriteria().andLabelLike(keywords);
-		return optionsMapper.selectByExample(example);
+		return optionsMapper.selectByExampleWithBLOBs(example);
 	}
 	//通过id删除
 	@Override
