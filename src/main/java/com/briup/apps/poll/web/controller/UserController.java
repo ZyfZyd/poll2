@@ -47,7 +47,7 @@ public class UserController {
 		
 	}
 	//修改
-		@PostMapping("updateClazz")
+		@PostMapping("updateUser")
 		public MsgResponse updateUser(User user){
 			try {
 				userService.update(user);

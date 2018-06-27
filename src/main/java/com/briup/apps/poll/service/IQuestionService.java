@@ -21,4 +21,6 @@ public interface IQuestionService {
 		
 
 		List<QuestionVM> findAllQuestionVM() throws Exception;
+		
+		void saveOrUpdate(QuestionVM questionVM) throws Exception;
 }

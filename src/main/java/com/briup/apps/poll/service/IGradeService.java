@@ -5,9 +5,9 @@ import java.util.List;
 import com.briup.apps.poll.bean.Grade;
 
 public interface IGradeService {
-	//查询
+	//查询所有年级信息
 	List<Grade> findAll() throws Exception;
-	//通过关键字查询
+	//通过关键字查询年级信息
 	List<Grade> query(String keywords) throws Exception;
 	//删除
 	void deleteById(long id) throws Exception;

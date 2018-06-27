@@ -5,11 +5,11 @@ import java.util.List;
 import com.briup.apps.poll.bean.School;
 
 public interface ISchoolService {
-	//查询
+	//查询所有学校信息
 	List<School> findAll() throws Exception;
 	//通过关键字查询
 	List<School> query(String keywords) throws Exception;
-	//删除
+	//通过id删除学校信息
 	void deleteById(long id) throws Exception;
 	//添加
 	void save(School school) throws Exception;

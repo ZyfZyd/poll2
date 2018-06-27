@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.briup.apps.poll.bean.Course;  
 import com.briup.apps.poll.service.ICourseService;
 import com.briup.apps.poll.util.MsgResponse;
-
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/course")
@@ -90,6 +90,23 @@ public class CourseController {
 		}
 	}
 	
+	@ApiOperation(value="保存或更新课程信息",notes="如果参数中包含id，说明这是一个更新操作，如果没有，这是一个保存操作")
+	@PostMapping("saveOrUpdateCourse")
+	public MsgResponse saveOrUpdateCourse(Course course){
+		try {
+			if(course!=null && course.getId()!=null){
+				courseService.update(course);
+			return MsgResponse.success("更新成功", null);
+			}else{
+				courseService.save(course);
+			}
+			return MsgResponse.success("保存成功", null);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
 	
 	
 	

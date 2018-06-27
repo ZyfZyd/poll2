@@ -102,5 +102,20 @@ public class QuestionController {
 					return MsgResponse.error(e.getMessage());
 				  }
 				}
-		}
+			
+			@PostMapping("saveOrUpdateQuestion")
+			@ApiOperation(value="保存或修改题目信息",notes="如果题目id不为空表示更新操作，如果题目id为空表示插入操作，保存或者更新题目的时候级联保存或者更新选项")
+			public MsgResponse saveOrUpdateQuestion(QuestionVM question){
+				try {
+					//调用Service层代码完成保存和更新操作
+					questionService.saveOrUpdate(question);
+					return MsgResponse.success("success", question);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					return MsgResponse.error(e.getMessage());
+				  }
+				}
+			
+}
 			
