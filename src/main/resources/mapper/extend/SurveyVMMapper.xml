@@ -15,5 +15,6 @@
   	<association  column="course_id" property="course" select="com.briup.apps.poll.dao.CourseMapper.selectByPrimaryKey" ></association>
   	<association  column="user_id" property="user" select="com.briup.apps.poll.dao.UserMapper.selectByPrimaryKey" ></association>
   	<association  column="clazz_id" property="clazz" select="com.briup.apps.poll.dao.ClazzMapper.selectByPrimaryKey" ></association>
+  	
   </resultMap>
 </mapper>
