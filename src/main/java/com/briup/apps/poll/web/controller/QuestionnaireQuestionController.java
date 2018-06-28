@@ -9,12 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.briup.apps.poll.bean.QuestionnaireQuestion;
-import com.briup.apps.poll.bean.extend.QuestionnaireQuestionVM;
 import com.briup.apps.poll.service.IQuestionnaireQuestionService;
 import com.briup.apps.poll.util.MsgResponse;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/questionnairequestion")
@@ -27,20 +25,6 @@ public class QuestionnaireQuestionController {
 	public MsgResponse findAllQuestionnaireQuestion(){
 		try {
 			List<QuestionnaireQuestion> list=questionnairequestionService.findAll();
-			return MsgResponse.success("success", list);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return MsgResponse.error(e.getMessage());
-		}
-		
-	}
-	@ApiOperation(value="查询问卷信息",notes="测试是否能通过桥表查询到问卷表内信息")
-	@GetMapping("findAllQuestionnaireQuestionVM")
-	public MsgResponse findAllQuestionnaireQuestionVM(){
-		try {
-			List<QuestionnaireQuestionVM> 
-			list=questionnairequestionService.findAllQuestionnaireQuestionVM();
 			return MsgResponse.success("success", list);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
