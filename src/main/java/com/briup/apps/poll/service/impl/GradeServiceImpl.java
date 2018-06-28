@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.briup.apps.poll.bean.Grade;
 import com.briup.apps.poll.bean.GradeExample;
+import com.briup.apps.poll.bean.extend.GradeVM;
 import com.briup.apps.poll.dao.GradeMapper;
+import com.briup.apps.poll.dao.extend.GradeVMMapper;
 import com.briup.apps.poll.service.IGradeService;
 
 
@@ -17,7 +19,8 @@ import com.briup.apps.poll.service.IGradeService;
 public class GradeServiceImpl implements IGradeService{
 	@Autowired
 	private GradeMapper gradeMapper;
-	
+	@Autowired
+	private GradeVMMapper gradeVMMapper;
 	//查询
 	@Override
 	public List<Grade> findAll() throws Exception {
@@ -52,6 +55,12 @@ public class GradeServiceImpl implements IGradeService{
 	public void update(Grade grade) throws Exception {
 		// TODO Auto-generated method stub
 		gradeMapper.updateByPrimaryKey(grade);
+	}
+
+	@Override
+	public List<GradeVM> findAllGradeVM() throws Exception {
+		// TODO Auto-generated method stub
+		return gradeVMMapper.selectAll();
 	}
 
 }
