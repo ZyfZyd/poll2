@@ -1,6 +1,5 @@
 package com.briup.apps.poll.web.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,7 @@ import com.briup.apps.poll.service.ISchoolService;
 import com.briup.apps.poll.util.MsgResponse;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/school")
@@ -21,7 +21,7 @@ import io.swagger.annotations.Api;
 public class SchoolController {
 	@Autowired
 	private ISchoolService schoolService;
-	//查询
+	@ApiOperation(value="查看学校信息")
 	@GetMapping("findAllSchool")
 	public MsgResponse findAllSchool(){
 		try {
@@ -34,50 +34,24 @@ public class SchoolController {
 		}
 		
 	}
-	
-	//批量删除
-	@PostMapping("batchDelete")
-	public MsgResponse batchDelete(long[] ids){
+	@ApiOperation(value="保存或更新学校信息",notes="如果参数中包含id，说明这是一个更新操作，如果没有，这是一个保存操作")
+	@PostMapping("saveOrUpdateSchool")
+	public MsgResponse saveOrUpdateSchool(School school){
 		try {
-			List<Long> idList=new ArrayList<>();
-		for(long id:ids){
-			idList.add(id);
-		}
-		schoolService.batchDelete(idList);
-		return MsgResponse.success("批量删除成功", null);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return MsgResponse.error(e.getMessage());
-		}
-
-	}
-	//添加
-	@PostMapping("saveSchool")
-	public MsgResponse saveSchool(School school){
-		try {
-			schoolService.save(school);
+			if(school!=null && school.getId()!=null){
+				schoolService.update(school);
+			return MsgResponse.success("更新成功", null);
+			}else{
+				schoolService.save(school);
+			}
 			return MsgResponse.success("保存成功", null);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
-		
 	}
-	//修改
-	@PostMapping("updateSchool")
-	public MsgResponse updateSchool(School school){
-		try {
-			schoolService.update(school);
-			return MsgResponse.success("修改成功", null);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return MsgResponse.error(e.getMessage());
-		}
-	}
-	//删除
+	@ApiOperation(value="通过id删除学校信息")
 	@GetMapping("deleteByIdSchool")
 	public MsgResponse deleteByIdCourse(long id){
 		try {

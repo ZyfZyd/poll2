@@ -11,10 +11,6 @@ public interface IQuestionnaireService {
 	
 	//删除
 	void deleteById(long id) throws Exception;
-	//添加
-	void save(Questionnaire questionnaire) throws Exception;
-	//修改
-	void update(Questionnaire questionnaire) throws Exception;
 	
 	QuestionnaireVM findById(long id) throws Exception;
 	

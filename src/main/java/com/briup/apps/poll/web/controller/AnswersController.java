@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiOperation;
 public class AnswersController {
 	@Autowired
 	private IAnswersService answersService;
-	//查询
+	@ApiOperation(value="查询答卷信息")
 	@GetMapping("findAllAnswers")
 	public MsgResponse findAllAnswers(){
 		try {
@@ -35,34 +35,26 @@ public class AnswersController {
 		}
 		
 	}
-	
-	
-	//添加
-	@PostMapping("saveAnswers")
-	public MsgResponse saveAnswers(Answers answers){
+	@ApiOperation(value="保存或更新答卷信息",notes="如果参数中包含id，说明这是一个更新操作，如果没有，这是一个保存操作")
+	@PostMapping("saveOrUpdateAnswers")
+	public MsgResponse saveOrUpdateAnswers(Answers answers){
 		try {
-			answersService.save(answers);
+			if(answers!=null && answers.getId()!=null){
+				answersService.update(answers);
+			return MsgResponse.success("更新成功", null);
+			}else{
+				answersService.save(answers);
+			}
 			return MsgResponse.success("保存成功", null);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
-		}
-		
+		}	
 	}
-	//修改
-	@PostMapping("updateAnswers")
-	public MsgResponse updateAnswers(Answers answers){
-		try {
-			answersService.update(answers);
-			return MsgResponse.success("修改成功", null);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return MsgResponse.error(e.getMessage());
-		}
-	}
-	//删除
+	
+	
+	@ApiOperation(value="通过id删除答卷信息")
 	@GetMapping("deleteByIdAnswers")
 	public MsgResponse deleteByIdAnswers(long id){
 		try {

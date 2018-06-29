@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiOperation;
 public class GradeController {
 	@Autowired
 	private IGradeService gradeService;
-	@ApiOperation(value="查询所有年级信息",notes="每个年级包含学校")
+	@ApiOperation(value="查询所有年级信息",notes="每个年级所属的学校")
 	@GetMapping("findAllGradeVM")
 	public MsgResponse findAllGradeVM(){
 		try {
@@ -35,7 +35,6 @@ public class GradeController {
 		}
 		
 	}
-	//查询
 	@ApiOperation("查询所有年级信息")
 	@GetMapping("findAllGrade")
 	public MsgResponse findAllGrade(){
@@ -48,34 +47,26 @@ public class GradeController {
 		}
 		
 	}
-	
-	
-	//添加
-	@PostMapping("saveGrade")
-	public MsgResponse saveGrade(Grade grade){
+	@ApiOperation(value="保存或更新年级信息",notes="如果参数中包含id，说明这是一个更新操作，如果没有，这是一个保存操作")
+	@PostMapping("saveOrUpdateGrade")
+	public MsgResponse saveOrUpdateGrade(Grade grade){
 		try {
-			gradeService.save(grade);
+			if(grade!=null && grade.getId()!=null){
+				gradeService.update(grade);
+			return MsgResponse.success("更新成功", null);
+			}else{
+				gradeService.save(grade);
+			}
 			return MsgResponse.success("保存成功", null);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
-		
 	}
-	//修改
-	@PostMapping("updateGrade")
-	public MsgResponse updateGrade(Grade grade){
-		try {
-			gradeService.update(grade);
-			return MsgResponse.success("修改成功", null);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return MsgResponse.error(e.getMessage());
-		}
-	}
-	//批量删除
+	
+	
+	@ApiOperation(value="通过id组批量删除年级信息")
 	@PostMapping("batchDelete")
 	public MsgResponse batchDelete(long[] ids){
 		try {
@@ -94,7 +85,7 @@ public class GradeController {
 		
 	}
 	
-	//删除
+	@ApiOperation(value="通过id删除年级信息")
 	@GetMapping("deleteByIdCourse")
 	public MsgResponse deleteByIdGrade(long id){
 		try {

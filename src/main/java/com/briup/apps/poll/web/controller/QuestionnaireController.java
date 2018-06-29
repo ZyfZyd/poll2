@@ -51,31 +51,6 @@ public class QuestionnaireController {
 	}
 	
 	
-	//添加
-	@PostMapping("saveQuestionnaire")
-	public MsgResponse saveQuestionnaire(Questionnaire questionnaire){
-		try {
-			questionnaireService.save(questionnaire);
-			return MsgResponse.success("保存成功", null);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return MsgResponse.error(e.getMessage());
-		}
-		
-	}
-	//修改
-	@PostMapping("updateQuestionnaire")
-	public MsgResponse updateQuestionnaire(Questionnaire questionnaire){
-		try {
-			questionnaireService.update(questionnaire);
-			return MsgResponse.success("修改成功", null);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return MsgResponse.error(e.getMessage());
-		}
-	}
 	@ApiOperation(value="通过问卷id删除问卷",notes="级联删除问卷和问题的关系")
 	@GetMapping("deleteByIdQuestionnaire")
 	public MsgResponse deleteByIdQuestionnaire(long id){

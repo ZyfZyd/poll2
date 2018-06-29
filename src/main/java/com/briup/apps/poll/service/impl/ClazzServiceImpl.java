@@ -51,4 +51,13 @@ public class ClazzServiceImpl implements IClazzService{
 		return clazzVMMapper.selectAll();
 	}
 
+	@Override
+	public void batchDelete(List<Long> ids) throws Exception {
+		// TODO Auto-generated method stub
+		for(long id:ids){
+			clazzMapper.deleteByPrimaryKey(id);
+		
+	}
+	}
+
 }

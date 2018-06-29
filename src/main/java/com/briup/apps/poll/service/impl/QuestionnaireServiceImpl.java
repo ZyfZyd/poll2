@@ -41,19 +41,6 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService{
 	}
 
 	@Override
-	public void save(Questionnaire questionnaire) throws Exception {
-		// TODO Auto-generated method stub
-		questionnaireMapper.insert(questionnaire);
-	}
-
-	@Override
-	public void update(Questionnaire questionnaire) throws Exception {
-		// TODO Auto-generated method stub
-		questionnaireMapper.updateByPrimaryKey(questionnaire);
-	}
-
-
-	@Override
 	public QuestionnaireVM findById(long id) throws Exception {
 		// TODO Auto-generated method stub
 		return questionnaireVMMapper.selectById(id);

@@ -14,7 +14,7 @@
   	<result column="content" property="content"/>
   	<association 
   		column="survey_id" 
-  		select="com.briup.apps.poll.dao.SurveyMapper.selectByPrimaryKey"
+  		select="com.briup.apps.poll.dao.extend.SurveyVMMapper.selectById"
   		property="survey" >
   	</association>
 </resultMap>

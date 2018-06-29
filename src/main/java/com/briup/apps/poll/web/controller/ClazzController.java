@@ -1,5 +1,6 @@
 package com.briup.apps.poll.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,6 @@ public class ClazzController {
 	@Autowired
 	private IClazzService clazzService;
 	
-    //查询
 	@GetMapping("findAllClazz")
 	@ApiOperation("查询所有的班级信息")
 	public MsgResponse findAllClazz(){
@@ -49,6 +49,24 @@ public class ClazzController {
 				return MsgResponse.error(e.getMessage());
 			}
 		}
+	@ApiOperation(value="通过id组批量删除班级信息")
+	@PostMapping("batchDelete")
+	public MsgResponse batchDelete(long[] ids){
+		try {
+			List<Long> idList =new ArrayList<>();
+			for(long id : ids){
+				idList.add(id);
+			}
+			clazzService.batchDelete(idList);
+		    return MsgResponse.success("批量删除成功", null);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		
+		}
+		
+	}
 		
 		@GetMapping("findAllClazzVM")
 		@ApiOperation(value="查询所有的班级信息",notes="每个班级信息中所属年级和班级所属的班主任的信息")
