@@ -10,6 +10,8 @@ public interface IGradeService {
 	List<Grade> findAll() throws Exception;
 	//通过关键字查询年级信息
 	List<Grade> query(String keywords) throws Exception;
+	//批量删除
+	void batchDelete(List<Long> ids) throws Exception;
 	//删除
 	void deleteById(long id) throws Exception;
 	//添加

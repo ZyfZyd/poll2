@@ -63,4 +63,13 @@ public class GradeServiceImpl implements IGradeService{
 		return gradeVMMapper.selectAll();
 	}
 
-}
+	@Override
+	public void batchDelete(List<Long> ids) throws Exception {
+		for(long id:ids){
+			gradeMapper.deleteByPrimaryKey(id);
+		
+	}
+	}
+	}
+
+

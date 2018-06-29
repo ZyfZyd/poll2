@@ -1,5 +1,6 @@
 package com.briup.apps.poll.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +75,25 @@ public class GradeController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
+	//批量删除
+	@PostMapping("batchDelete")
+	public MsgResponse batchDelete(long[] ids){
+		try {
+			List<Long> idList =new ArrayList<>();
+			for(long id : ids){
+				idList.add(id);
+			}
+		    gradeService.batchDelete(idList);
+		    return MsgResponse.success("批量删除成功", null);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		
+		}
+		
+	}
+	
 	//删除
 	@GetMapping("deleteByIdCourse")
 	public MsgResponse deleteByIdGrade(long id){
