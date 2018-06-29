@@ -49,8 +49,7 @@ public class QuestionnaireController {
 		}
 		
 	}
-	
-	
+		
 	@ApiOperation(value="通过问卷id删除问卷",notes="级联删除问卷和问题的关系")
 	@GetMapping("deleteByIdQuestionnaire")
 	public MsgResponse deleteByIdQuestionnaire(long id){
