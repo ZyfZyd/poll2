@@ -35,7 +35,7 @@ public class QuestionController {
 				return MsgResponse.error(e.getMessage());
 			  }
 			}
-	@ApiOperation(value="批量删除题目信息",notes="删除题目的信息以及包含该题目下所有的选项信息")
+	@ApiOperation(value="批量删除题目信息",notes="删除题目信息以及该题目下所有的选项信息")
 			@PostMapping("batchDelete")
 			public MsgResponse batchDelete(long[] ids){
 				try {
@@ -53,7 +53,7 @@ public class QuestionController {
 
 			}
 			
-			@ApiOperation(value="删除题目信息",notes="删除题目的信息以及包含该题目下所有的选项信息")
+			@ApiOperation(value="删除题目信息",notes="删除题目的信息以及该题目下所有的选项信息")
 			@GetMapping("deleteByIdQuestion")
 			public MsgResponse deleteByIdQuestion(long id){
 				try {
@@ -65,6 +65,7 @@ public class QuestionController {
 					return MsgResponse.error(e.getMessage());
 				}
 			}
+			
 			@GetMapping("findAllQuestionVM")
 			@ApiOperation(value="查询所有的题目信息",notes="每个题目信息包含该题目下所有的选项信息")
 			public MsgResponse findAllQuestionVM(){
