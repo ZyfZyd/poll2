@@ -15,7 +15,7 @@
   		column="id"
   		property="questionVMs"
   		javaType="ArrayList"
-  		ofType="com.briup.apps.poll.bean.QuestionVM"
+  		ofType="com.briup.apps.poll.bean.extend.QuestionVM"
   		select="com.briup.apps.poll.dao.extend.QuestionVMMapper.selectByQuestionnaireId"></collection>
   		<!-- 通过qusetionnaire_id找到该问卷下的所有问题的信息 -->
 </resultMap>

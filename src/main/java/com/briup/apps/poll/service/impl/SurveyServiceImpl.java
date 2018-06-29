@@ -1,5 +1,7 @@
 package com.briup.apps.poll.service.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import com.briup.apps.poll.bean.extend.SurveyVM;
 import com.briup.apps.poll.dao.SurveyMapper;
 import com.briup.apps.poll.dao.extend.SurveyVMMapper;
 import com.briup.apps.poll.service.ISurveyService;
+
 
 @Service
 public class SurveyServiceImpl implements ISurveyService{
@@ -34,21 +37,31 @@ public class SurveyServiceImpl implements ISurveyService{
 	}
 
 	@Override
-	public void save(Survey survey) throws Exception {
-		// TODO Auto-generated method stub
-		surveyMapper.insert(survey);
-	}
-
-	@Override
-	public void update(Survey survey) throws Exception {
-		// TODO Auto-generated method stub
-		surveyMapper.updateByPrimaryKey(survey);
-	}
-
-	@Override
 	public List<SurveyVM> findAllSurveyVM() throws Exception {
 		// TODO Auto-generated method stub
 		return surveyVMMapper.selectAll();
+	}
+
+	@Override
+	public void saveOrUpdateSurvey(Survey survey) throws Exception {
+		// TODO Auto-generated method stub
+		//在保存课调之前先初始化课调信息
+		survey.setStatus(Survey.STATUS_INIT);
+		survey.setCode("");
+		
+		Date surveyDate=new Date();
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String str=sdf.format(surveyDate);
+		survey.setSurveydate(str);
+		
+		surveyMapper.insert(survey);
+		
+	}
+
+	@Override
+	public SurveyVM findAllById(long id) throws Exception {
+		// TODO Auto-generated method stub
+		return surveyVMMapper.selectById(id);
 	}
 
 }

@@ -22,7 +22,8 @@ import io.swagger.annotations.ApiOperation;
 public class SurveyController {
 	@Autowired
 	private ISurveyService surveyService;
-	//查询
+	
+	@ApiOperation(value="查询课调信息")
 	@GetMapping("findAllSurvey")
 	public MsgResponse findAllSurvey(){
 		try {
@@ -36,12 +37,11 @@ public class SurveyController {
 		
 	}
 	
-	
-	//添加
-	@PostMapping("saveSurvey")
-	public MsgResponse saveSurvey(Survey survey){
+	@ApiOperation(value="保存或更新",notes="只需要输入courseId,clazzId,userId,questionnairsId")
+	@PostMapping("saveOrUpdateSurvey")
+	public MsgResponse saveOrUpdateSurvey(Survey survey){
 		try {
-			surveyService.save(survey);
+			surveyService.saveOrUpdateSurvey(survey);
 			return MsgResponse.success("保存成功", null);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -50,19 +50,8 @@ public class SurveyController {
 		}
 		
 	}
-	//修改
-	@PostMapping("updateSurvey")
-	public MsgResponse updateSurvey(Survey survey){
-		try {
-			surveyService.update(survey);
-			return MsgResponse.success("修改成功", null);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return MsgResponse.error(e.getMessage());
-		}
-	}
-	//删除
+	
+	@ApiOperation(value="通过id删除课调信息")
 	@GetMapping("deleteByIdSurvey")
 	public MsgResponse deleteByIdSurvey(long id){
 		try {
@@ -75,7 +64,7 @@ public class SurveyController {
 		}
 	}
 	@GetMapping("findAllSurveyVM")
-	@ApiOperation(value="查询所有的课调信息",notes="每个班级信息中所属年级和班级所属的班主任的信息")
+	@ApiOperation(value="查询所有的课调信息",notes="级联查询课调关联的课程、班级、讲师、问卷")
 	public MsgResponse findAllSurveyVM(){
 		try{
 			List<SurveyVM> list=surveyService.findAllSurveyVM();
@@ -86,7 +75,18 @@ public class SurveyController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	
+	@GetMapping("findAllSurveyById")
+	@ApiOperation(value="查询所有的课调信息",notes="级联查询课调关联的课程、班级、讲师、问卷")
+	public MsgResponse findAllSurveyById(long id){
+		try{
+			List<SurveyVM> list=surveyService.findAllSurveyVM();
+			return MsgResponse.success("success",list);
+		}catch(Exception e){
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
 	
 	
 	

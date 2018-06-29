@@ -1,8 +1,6 @@
 package com.briup.apps.poll.bean.extend;
 
-import com.briup.apps.poll.bean.Clazz;
 import com.briup.apps.poll.bean.Course;
-import com.briup.apps.poll.bean.Questionnaire;
 import com.briup.apps.poll.bean.User;
 
 public class SurveyVM {
@@ -10,10 +8,10 @@ public class SurveyVM {
 	private String status;
 	private String code;
 	private String surveyDate;
-	private Questionnaire questionnaire;//所属问卷信息
+	private QuestionnaireVM questionnaireVM;//所属问卷信息
 	private Course course;//所属课程信息
-	private User user;//所属老师信息
-	private Clazz clazz;//所属班级信息
+	private User teacher;//所属老师信息
+	private ClazzVM clazzVM;//所属班级信息
 	public Long getId() {
 		return id;
 	}
@@ -38,30 +36,31 @@ public class SurveyVM {
 	public void setSurveyDate(String surveyDate) {
 		this.surveyDate = surveyDate;
 	}
-	public Questionnaire getQuestionnaire() {
-		return questionnaire;
-	}
-	public void setQuestionnaire(Questionnaire questionnaire) {
-		this.questionnaire = questionnaire;
-	}
 	public Course getCourse() {
 		return course;
 	}
 	public void setCourse(Course course) {
 		this.course = course;
 	}
-	public User getUser() {
-		return user;
+	public QuestionnaireVM getQuestionnaireVM() {
+		return questionnaireVM;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setQuestionnaireVM(QuestionnaireVM questionnaireVM) {
+		this.questionnaireVM = questionnaireVM;
 	}
-	public Clazz getClazz() {
-		return clazz;
+	public User getTeacher() {
+		return teacher;
 	}
-	public void setClazz(Clazz clazz) {
-		this.clazz = clazz;
+	public void setTeacher(User teacher) {
+		this.teacher = teacher;
 	}
+	public ClazzVM getClazzVM() {
+		return clazzVM;
+	}
+	public void setClazzVM(ClazzVM clazzVM) {
+		this.clazzVM = clazzVM;
+	}
+	
 	
 	
 }

@@ -10,10 +10,10 @@ public interface ISurveyService {
 	List<Survey> findAll() throws Exception;
 	//删除
 	void deleteById(long id) throws Exception;
-	//添加
-	void save(Survey survey) throws Exception;
-	//修改
-	void update(Survey survey) throws Exception;
+	
+	void saveOrUpdateSurvey(Survey survey) throws Exception;
 	
 	List<SurveyVM> findAllSurveyVM() throws Exception;
+	
+	SurveyVM findAllById(long id) throws Exception;
 }
