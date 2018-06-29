@@ -22,6 +22,7 @@ import io.swagger.annotations.ApiOperation;
 public class ClazzController {
 	@Autowired
 	private IClazzService clazzService;
+	
     //查询
 	@GetMapping("findAllClazz")
 	@ApiOperation("查询所有的班级信息")
@@ -36,32 +37,7 @@ public class ClazzController {
 		}
 	}
 
-//添加
-	@PostMapping("saveClazz")
-	public MsgResponse saveClazz(Clazz clazz){
-		try {
-			clazzService.save(clazz);
-			return MsgResponse.success("保存成功", null);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return MsgResponse.error(e.getMessage());
-		}
-		
-	}
-	//修改
-		@PostMapping("updateClazz")
-		public MsgResponse updateClazz(Clazz clazz){
-			try {
-				clazzService.update(clazz);
-				return MsgResponse.success("修改成功", null);
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-				return MsgResponse.error(e.getMessage());
-			}
-		}
-		//删除
+	@ApiOperation("通过id删除班级信息")
 		@GetMapping("deleteByIdClazz")
 		public MsgResponse deleteByIdClazz(long id){
 			try {
@@ -87,5 +63,21 @@ public class ClazzController {
 			}
 		}
 		
-		
+		@ApiOperation(value="保存或更新班级信息",notes="如果参数中包含id，说明这是一个更新操作，如果没有，这是一个保存操作")
+		@PostMapping("saveOrUpdateClazz")
+		public MsgResponse saveOrUpdateClazz(Clazz clazz){
+			try {
+				if(clazz!=null && clazz.getId()!=null){
+					clazzService.update(clazz);
+				return MsgResponse.success("更新成功", null);
+				}else{
+					clazzService.save(clazz);
+				}
+				return MsgResponse.success("保存成功", null);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				return MsgResponse.error(e.getMessage());
+			}	
+		}
 }		

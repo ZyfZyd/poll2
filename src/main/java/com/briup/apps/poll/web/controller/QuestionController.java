@@ -23,8 +23,8 @@ import io.swagger.annotations.ApiOperation;
 public class QuestionController {
 	@Autowired
 	private IQuestionService questionService;
-	    //查询
-		@GetMapping("findAllQuestion")
+	@ApiOperation(value="查询单表下所有的题目信息")
+	@GetMapping("findAllQuestion")
 		public MsgResponse findAllQuestion(){
 			try {
 				List<Question> list=questionService.findAll();
@@ -35,7 +35,7 @@ public class QuestionController {
 				return MsgResponse.error(e.getMessage());
 			  }
 			}
-			//批量删除
+	@ApiOperation(value="批量删除题目信息",notes="删除题目的信息以及包含该题目下所有的选项信息")
 			@PostMapping("batchDelete")
 			public MsgResponse batchDelete(long[] ids){
 				try {
@@ -52,32 +52,8 @@ public class QuestionController {
 				}
 
 			}
-			//添加
-			@PostMapping("saveQuestion")
-			public MsgResponse saveQuestion(Question question){
-				try {
-					questionService.save(question);
-					return MsgResponse.success("保存成功", null);
-				} catch (Exception e) {
-					// TODO: handle exception
-					e.printStackTrace();
-					return MsgResponse.error(e.getMessage());
-				}
-				
-			}
-			//修改
-			@PostMapping("updateQuestion")
-			public MsgResponse updateCourse(Question question){
-				try {
-					questionService.update(question);
-					return MsgResponse.success("修改成功", null);
-				} catch (Exception e) {
-					// TODO: handle exception
-					e.printStackTrace();
-					return MsgResponse.error(e.getMessage());
-				}
-			}
-			//删除
+			
+			@ApiOperation(value="删除题目信息",notes="删除题目的信息以及包含该题目下所有的选项信息")
 			@GetMapping("deleteByIdQuestion")
 			public MsgResponse deleteByIdQuestion(long id){
 				try {

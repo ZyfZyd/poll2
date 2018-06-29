@@ -10,17 +10,13 @@ public interface IQuestionService {
 		List<Question>findAll() throws Exception;
 		//通过关键字查询
 		List<Question> query(String keywords) throws Exception;
-		//删除
+		//通过id删除问题信息
 		void deleteById(long id) throws Exception;
-		//添加
-		void save(Question question) throws Exception;
-		//修改
-		void update(Question question) throws Exception;
 		//批量删除
 		void batchDelete(List<Long> ids) throws Exception;
 		
-
+		//查询所有的题目信息，包括选项
 		List<QuestionVM> findAllQuestionVM() throws Exception;
-		
+		//添加和保存问题信息和选项信息
 		void saveOrUpdate(QuestionVM questionVM) throws Exception;
 }

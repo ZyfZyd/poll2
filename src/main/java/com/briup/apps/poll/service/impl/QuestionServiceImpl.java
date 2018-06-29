@@ -45,18 +45,6 @@ public class QuestionServiceImpl implements IQuestionService{
 		// TODO Auto-generated method stub
 		questionMapper.deleteByPrimaryKey(id);
 	}
-	//添加
-	@Override
-	public void save(Question question) throws Exception {
-		// TODO Auto-generated method stub
-		questionMapper.insert(question);
-	}
-	//更新
-	@Override
-	public void update(Question question) throws Exception {
-		// TODO Auto-generated method stub
-		questionMapper.updateByPrimaryKey(question);
-	}
 	//批量删除
 	@Override
 	public void batchDelete(List<Long> ids) throws Exception {

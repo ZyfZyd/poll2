@@ -13,6 +13,7 @@ import com.briup.apps.poll.service.IUserService;
 import com.briup.apps.poll.util.MsgResponse;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/user")
@@ -20,7 +21,8 @@ import io.swagger.annotations.Api;
 public class UserController {
 	@Autowired
 	private IUserService userService;
-    //查询
+	
+	@ApiOperation(value="查询所有用户信息")
 	@GetMapping("findAllUser")
 	public MsgResponse findAllUser(){
 		try{
@@ -32,33 +34,7 @@ public class UserController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-
-//添加
-	@PostMapping("saveUser")
-	public MsgResponse saveUser(User user){
-		try {
-			userService.save(user);
-			return MsgResponse.success("保存成功", null);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return MsgResponse.error(e.getMessage());
-		}
-		
-	}
-	//修改
-		@PostMapping("updateUser")
-		public MsgResponse updateUser(User user){
-			try {
-				userService.update(user);
-				return MsgResponse.success("修改成功", null);
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-				return MsgResponse.error(e.getMessage());
-			}
-		}
-		//删除
+	@ApiOperation(value="通过id删除用户信息")
 		@GetMapping("deleteByIdUser")
 		public MsgResponse deleteByIdUser(long id){
 			try {
@@ -69,6 +45,24 @@ public class UserController {
 				e.printStackTrace();
 				return MsgResponse.error(e.getMessage());
 			}
+		}
+		
+		@ApiOperation(value="保存或更新用户信息",notes="如果参数中包含id，说明这是一个更新操作，如果没有，这是一个保存操作")
+		@PostMapping("saveOrUpdateUser")
+		public MsgResponse saveOrUpdateUser(User user){
+			try {
+				if(user!=null && user.getId()!=null){
+					userService.update(user);
+				return MsgResponse.success("更新成功", null);
+				}else{
+					userService.save(user);
+				}
+				return MsgResponse.success("保存成功", null);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				return MsgResponse.error(e.getMessage());
+			}	
 		}
 		
 }		

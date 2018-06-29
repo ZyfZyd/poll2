@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiOperation;
 public class CourseController {
 	@Autowired
 	private ICourseService courseService;
-	//查询
+	@ApiOperation(value="查询所有课程信息")
 	@GetMapping("findAllCourse")
 	public MsgResponse findAllCourse(){
 		try {
@@ -35,7 +35,7 @@ public class CourseController {
 		
 	}
 	
-	//批量删除
+	@ApiOperation(value="通过id批量删除课程信息")
 	@PostMapping("batchDelete")
 	public MsgResponse batchDelete(long[] ids){
 		try {
@@ -52,32 +52,7 @@ public class CourseController {
 		}
 
 	}
-	//添加
-	@PostMapping("saveCourse")
-	public MsgResponse saveCourse(Course course){
-		try {
-			courseService.save(course);
-			return MsgResponse.success("保存成功", null);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return MsgResponse.error(e.getMessage());
-		}
-		
-	}
-	//修改
-	@PostMapping("updateCourse")
-	public MsgResponse updateCourse(Course course){
-		try {
-			courseService.update(course);
-			return MsgResponse.success("修改成功", null);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return MsgResponse.error(e.getMessage());
-		}
-	}
-	//删除
+	@ApiOperation(value="通过id删除课程信息")
 	@GetMapping("deleteByIdCourse")
 	public MsgResponse deleteByIdCourse(long id){
 		try {
