@@ -35,21 +35,19 @@ public class AnswersServiceImpl implements IAnswersService{
 	}
 
 	@Override
-	public void save(Answers answers) throws Exception {
-		// TODO Auto-generated method stub
-		answersMapper.insert(answers);
-	}
-
-	@Override
-	public void update(Answers answers) throws Exception {
-		// TODO Auto-generated method stub
-		answersMapper.updateByPrimaryKey(answers);
-	}
-
-	@Override
 	public List<AnswersVM> findAllAnswersVM() throws Exception {
 		// TODO Auto-generated method stub
 		return answersVMMapper.selectAll();
+	}
+
+	@Override
+	public void saveOrUpdate(Answers answers) throws Exception {
+		// TODO Auto-generated method stub
+		if(answers.getId()!=null){
+			answersMapper.updateByPrimaryKey(answers);
+		}else{
+			answersMapper.insert(answers);
+		}
 	}
 
 }

@@ -16,4 +16,8 @@ public interface ISurveyService {
 	List<SurveyVM> findAllSurveyVM() throws Exception;
 	
 	SurveyVM findAllById(long id) throws Exception;
+	
+	Survey findSurveyById(long id) throws Exception;
+	
+	List<SurveyVM> selectByStatus(String status) throws Exception;
 }

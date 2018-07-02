@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/answers")
-@Api(description="答卷相关接口")
+@Api(description="学生答卷相关接口")
 public class AnswersController {
 	@Autowired
 	private IAnswersService answersService;
@@ -35,22 +35,23 @@ public class AnswersController {
 		}
 		
 	}
-	@ApiOperation(value="保存或更新答卷信息",notes="如果参数中包含id，说明这是一个更新操作，如果没有，这是一个保存操作")
-	@PostMapping("saveOrUpdateAnswers")
-	public MsgResponse saveOrUpdateAnswers(Answers answers){
+	
+	@PostMapping("submitAnswer")
+	@ApiOperation(value="提交答卷，每个学生提交一份")
+	public MsgResponse submitAnswer(Answers answers){
 		try {
-			if(answers!=null && answers.getId()!=null){
-				answersService.update(answers);
-			return MsgResponse.success("更新成功", null);
-			}else{
-				answersService.save(answers);
-			}
-			return MsgResponse.success("保存成功", null);
+			//判断用户是否具有答卷权限（是否提交过）
+			
+			//保存答卷信息
+			answersService.saveOrUpdate(answers);
+			return MsgResponse.success("提交成功！", null);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
-		}	
+		}
+		
+		
 	}
 	
 	

@@ -5,9 +5,14 @@
   	select * from poll_survey
   	<!-- id status code surveyDate questionnaire_id course_id  user_id clazz_id-->
   </select>
+  
    <select id="selectById" parameterType="long" resultMap="SurveyVMResultMap">
-  	select * from poll_survey where id=#{id}
+  	select * from poll_survey where id = #{id}
 	</select>	
+	
+	<select id="selectByStatus" parameterType="java.lang.String" resultMap="SurveyVMResultMap">
+  	select * from poll_survey where status = #{status}
+  </select>
   
   <resultMap type="com.briup.apps.poll.bean.extend.SurveyVM" id="SurveyVMResultMap">
   	<id column="id" property="id"/>

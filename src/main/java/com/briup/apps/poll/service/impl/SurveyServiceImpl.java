@@ -45,7 +45,12 @@ public class SurveyServiceImpl implements ISurveyService{
 	@Override
 	public void saveOrUpdateSurvey(Survey survey) throws Exception {
 		// TODO Auto-generated method stub
-		//在保存课调之前先初始化课调信息
+		//判断是保存还是更新
+		if(survey.getId()!=null){
+			//更新
+			surveyMapper.updateByPrimaryKey(survey);
+		}else{
+			//在保存课调之前先初始化课调信息
 		survey.setStatus(Survey.STATUS_INIT);
 		survey.setCode("");
 		
@@ -55,13 +60,25 @@ public class SurveyServiceImpl implements ISurveyService{
 		survey.setSurveydate(str);
 		
 		surveyMapper.insert(survey);
-		
+		}
 	}
 
 	@Override
 	public SurveyVM findAllById(long id) throws Exception {
 		// TODO Auto-generated method stub
 		return surveyVMMapper.selectById(id);
+	}
+
+	@Override
+	public Survey findSurveyById(long id) throws Exception {
+		// TODO Auto-generated method stub
+		return surveyMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public List<SurveyVM> selectByStatus(String status) throws Exception {
+		// TODO Auto-generated method stub
+		return surveyVMMapper.selectByStatus(status);
 	}
 
 }

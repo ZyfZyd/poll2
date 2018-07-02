@@ -10,10 +10,8 @@ public interface IAnswersService {
 		List<Answers> findAll() throws Exception;
 		//通过id删除答卷信息
 		void deleteById(long id) throws Exception;
-		//添加
-		void save(Answers answers) throws Exception;
-		//修改
-		void update(Answers answers) throws Exception;
 		
 		List<AnswersVM> findAllAnswersVM() throws Exception;
+		//提交或者更新答卷信息
+		void saveOrUpdate(Answers answers) throws Exception;
 }
