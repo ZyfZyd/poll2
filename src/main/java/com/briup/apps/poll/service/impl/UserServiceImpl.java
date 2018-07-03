@@ -11,16 +11,16 @@ import com.briup.apps.poll.dao.UserMapper;
 import com.briup.apps.poll.service.IUserService;
 
 @Service
-public class UserServiceImpl implements IUserService{
+public class UserServiceImpl implements IUserService {
 	@Autowired
 	private UserMapper answersMapper;
-	
+
 	@Override
 	public List<User> findAll() throws Exception {
 		// TODO Auto-generated method stub
-		//创建空模板
+		// 创建空模板
 		UserExample example = new UserExample();
-		//调用QBE查询，并将查询结果返回
+		// 调用QBE查询，并将查询结果返回
 		return answersMapper.selectByExample(example);
 	}
 

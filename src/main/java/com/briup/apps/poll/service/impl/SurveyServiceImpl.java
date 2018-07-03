@@ -14,19 +14,19 @@ import com.briup.apps.poll.dao.SurveyMapper;
 import com.briup.apps.poll.dao.extend.SurveyVMMapper;
 import com.briup.apps.poll.service.ISurveyService;
 
-
 @Service
-public class SurveyServiceImpl implements ISurveyService{
+public class SurveyServiceImpl implements ISurveyService {
 	@Autowired
 	private SurveyMapper surveyMapper;
 	@Autowired
 	private SurveyVMMapper surveyVMMapper;
+
 	@Override
 	public List<Survey> findAll() throws Exception {
 		// TODO Auto-generated method stub
-		//创建空模板
+		// 创建空模板
 		SurveyExample example = new SurveyExample();
-		//调用QBE查询，并将查询结果返回
+		// 调用QBE查询，并将查询结果返回
 		return surveyMapper.selectByExample(example);
 	}
 
@@ -45,21 +45,21 @@ public class SurveyServiceImpl implements ISurveyService{
 	@Override
 	public void saveOrUpdateSurvey(Survey survey) throws Exception {
 		// TODO Auto-generated method stub
-		//判断是保存还是更新
-		if(survey.getId()!=null){
-			//更新
+		// 判断是保存还是更新
+		if (survey.getId() != null) {
+			// 更新
 			surveyMapper.updateByPrimaryKey(survey);
-		}else{
-			//在保存课调之前先初始化课调信息
-		survey.setStatus(Survey.STATUS_INIT);
-		survey.setCode("");
-		
-		Date surveyDate=new Date();
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String str=sdf.format(surveyDate);
-		survey.setSurveydate(str);
-		
-		surveyMapper.insert(survey);
+		} else {
+			// 在保存课调之前先初始化课调信息
+			survey.setStatus(Survey.STATUS_INIT);
+			survey.setCode("");
+
+			Date surveyDate = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String str = sdf.format(surveyDate);
+			survey.setSurveydate(str);
+
+			surveyMapper.insert(survey);
 		}
 	}
 

@@ -19,18 +19,18 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/clazz")
-@Api(description="班级相关接口")
+@Api(description = "班级相关接口")
 public class ClazzController {
 	@Autowired
 	private IClazzService clazzService;
-	
+
 	@GetMapping("findAllClazz")
 	@ApiOperation("查询所有的班级信息")
-	public MsgResponse findAllClazz(){
-		try{
-			List<Clazz> list=clazzService.findAll();
-			return MsgResponse.success("success",list);
-		}catch(Exception e){
+	public MsgResponse findAllClazz() {
+		try {
+			List<Clazz> list = clazzService.findAll();
+			return MsgResponse.success("success", list);
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
@@ -38,63 +38,65 @@ public class ClazzController {
 	}
 
 	@ApiOperation("通过id删除班级信息")
-		@GetMapping("deleteByIdClazz")
-		public MsgResponse deleteByIdClazz(long id){
-			try {
-				clazzService.deleteById(id);
-				return MsgResponse.success("删除成功", null);
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-				return MsgResponse.error(e.getMessage());
-			}
-		}
-	@ApiOperation(value="通过id组批量删除班级信息")
-	@PostMapping("batchDelete")
-	public MsgResponse batchDelete(long[] ids){
+	@GetMapping("deleteByIdClazz")
+	public MsgResponse deleteByIdClazz(long id) {
 		try {
-			List<Long> idList =new ArrayList<>();
-			for(long id : ids){
-				idList.add(id);
-			}
-			clazzService.batchDelete(idList);
-		    return MsgResponse.success("批量删除成功", null);
+			clazzService.deleteById(id);
+			return MsgResponse.success("删除成功", null);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
-		
 		}
-		
 	}
-		@GetMapping("findAllClazzVM")
-		@ApiOperation(value="查询所有的班级信息",notes="每个班级信息中所属年级和班级所属的班主任的信息")
-		public MsgResponse findAllClazzVM(){
-			try{
-				List<ClazzVM> list=clazzService.findAllClazzVM();
-				return MsgResponse.success("success",list);
-			}catch(Exception e){
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return MsgResponse.error(e.getMessage());
+
+	@ApiOperation(value = "通过id组批量删除班级信息")
+	@PostMapping("batchDelete")
+	public MsgResponse batchDelete(long[] ids) {
+		try {
+			List<Long> idList = new ArrayList<>();
+			for (long id : ids) {
+				idList.add(id);
 			}
+			clazzService.batchDelete(idList);
+			return MsgResponse.success("批量删除成功", null);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+
 		}
-		
-		@ApiOperation(value="保存或更新班级信息",notes="如果参数中包含id，说明这是一个更新操作，如果没有，这是一个保存操作")
-		@PostMapping("saveOrUpdateClazz")
-		public MsgResponse saveOrUpdateClazz(Clazz clazz){
-			try {
-				if(clazz!=null && clazz.getId()!=null){
-					clazzService.update(clazz);
+
+	}
+
+	@GetMapping("findAllClazzVM")
+	@ApiOperation(value = "查询所有的班级信息", notes = "每个班级信息中所属年级和班级所属的班主任的信息")
+	public MsgResponse findAllClazzVM() {
+		try {
+			List<ClazzVM> list = clazzService.findAllClazzVM();
+			return MsgResponse.success("success", list);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+
+	@ApiOperation(value = "保存或更新班级信息", notes = "如果参数中包含id，说明这是一个更新操作，如果没有，这是一个保存操作")
+	@PostMapping("saveOrUpdateClazz")
+	public MsgResponse saveOrUpdateClazz(Clazz clazz) {
+		try {
+			if (clazz != null && clazz.getId() != null) {
+				clazzService.update(clazz);
 				return MsgResponse.success("更新成功", null);
-				}else{
-					clazzService.save(clazz);
-				}
-				return MsgResponse.success("保存成功", null);
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-				return MsgResponse.error(e.getMessage());
-			}	
+			} else {
+				clazzService.save(clazz);
+			}
+			return MsgResponse.success("保存成功", null);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
 		}
-}		
+	}
+}

@@ -13,18 +13,18 @@ import com.briup.apps.poll.dao.extend.AnswersVMMapper;
 import com.briup.apps.poll.service.IAnswersService;
 
 @Service
-public class AnswersServiceImpl implements IAnswersService{
+public class AnswersServiceImpl implements IAnswersService {
 	@Autowired
 	private AnswersMapper answersMapper;
 	@Autowired
 	private AnswersVMMapper answersVMMapper;
-	
+
 	@Override
 	public List<Answers> findAll() throws Exception {
 		// TODO Auto-generated method stub
-		//创建空模板
+		// 创建空模板
 		AnswersExample example = new AnswersExample();
-		//调用QBE查询，并将查询结果返回
+		// 调用QBE查询，并将查询结果返回
 		return answersMapper.selectByExample(example);
 	}
 
@@ -43,9 +43,9 @@ public class AnswersServiceImpl implements IAnswersService{
 	@Override
 	public void saveOrUpdate(Answers answers) throws Exception {
 		// TODO Auto-generated method stub
-		if(answers.getId()!=null){
+		if (answers.getId() != null) {
 			answersMapper.updateByPrimaryKey(answers);
-		}else{
+		} else {
 			answersMapper.insert(answers);
 		}
 	}

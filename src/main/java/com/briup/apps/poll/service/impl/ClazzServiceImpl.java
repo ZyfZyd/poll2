@@ -13,18 +13,18 @@ import com.briup.apps.poll.dao.extend.ClazzVMMapper;
 import com.briup.apps.poll.service.IClazzService;
 
 @Service
-public class ClazzServiceImpl implements IClazzService{
+public class ClazzServiceImpl implements IClazzService {
 	@Autowired
 	private ClazzMapper clazzMapper;
 	@Autowired
 	private ClazzVMMapper clazzVMMapper;
-	
+
 	@Override
 	public List<Clazz> findAll() throws Exception {
 		// TODO Auto-generated method stub
-		//创建空模板
+		// 创建空模板
 		ClazzExample example = new ClazzExample();
-		//调用QBE查询，并将查询结果返回
+		// 调用QBE查询，并将查询结果返回
 		return clazzMapper.selectByExampleWithBLOBs(example);
 	}
 
@@ -54,10 +54,10 @@ public class ClazzServiceImpl implements IClazzService{
 	@Override
 	public void batchDelete(List<Long> ids) throws Exception {
 		// TODO Auto-generated method stub
-		for(long id:ids){
+		for (long id : ids) {
 			clazzMapper.deleteByPrimaryKey(id);
-		
-	}
+
+		}
 	}
 
 }

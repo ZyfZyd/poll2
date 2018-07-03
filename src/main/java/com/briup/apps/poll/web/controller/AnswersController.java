@@ -18,31 +18,32 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/answers")
-@Api(description="学生答卷相关接口")
+@Api(description = "学生答卷相关接口")
 public class AnswersController {
 	@Autowired
 	private IAnswersService answersService;
-	@ApiOperation(value="查询答卷信息")
+
+	@ApiOperation(value = "查询答卷信息")
 	@GetMapping("findAllAnswers")
-	public MsgResponse findAllAnswers(){
+	public MsgResponse findAllAnswers() {
 		try {
-			List<Answers> list=answersService.findAll();
+			List<Answers> list = answersService.findAll();
 			return MsgResponse.success("success", list);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
-		
+
 	}
-	
+
 	@PostMapping("submitAnswer")
-	@ApiOperation(value="提交答卷，每个学生提交一份")
-	public MsgResponse submitAnswer(Answers answers){
+	@ApiOperation(value = "提交答卷，每个学生提交一份")
+	public MsgResponse submitAnswer(Answers answers) {
 		try {
-			//判断用户是否具有答卷权限（是否提交过）
-			
-			//保存答卷信息
+			// 判断用户是否具有答卷权限（是否提交过）
+
+			// 保存答卷信息
 			answersService.saveOrUpdate(answers);
 			return MsgResponse.success("提交成功！", null);
 		} catch (Exception e) {
@@ -50,14 +51,12 @@ public class AnswersController {
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
-		
-		
+
 	}
-	
-	
-	@ApiOperation(value="通过id删除答卷信息")
+
+	@ApiOperation(value = "通过id删除答卷信息")
 	@GetMapping("deleteByIdAnswers")
-	public MsgResponse deleteByIdAnswers(long id){
+	public MsgResponse deleteByIdAnswers(long id) {
 		try {
 			answersService.deleteById(id);
 			return MsgResponse.success("删除成功", null);
@@ -67,16 +66,17 @@ public class AnswersController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
+
 	@GetMapping("findAllAnswersVM")
-	@ApiOperation(value="查询所有的答卷信息",notes="")
-	public MsgResponse findAllAnswersVM(){
-		try{
-			List<AnswersVM> list=answersService.findAllAnswersVM();
-			return MsgResponse.success("success",list);
-		}catch(Exception e){
+	@ApiOperation(value = "查询所有的答卷信息", notes = "")
+	public MsgResponse findAllAnswersVM() {
+		try {
+			List<AnswersVM> list = answersService.findAllAnswersVM();
+			return MsgResponse.success("success", list);
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
-	}}
-	
+	}
+}

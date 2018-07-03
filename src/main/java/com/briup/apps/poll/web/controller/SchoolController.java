@@ -17,31 +17,33 @@ import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/school")
-@Api(description="学校相关接口")
+@Api(description = "学校相关接口")
 public class SchoolController {
 	@Autowired
 	private ISchoolService schoolService;
-	@ApiOperation(value="查看学校信息")
+
+	@ApiOperation(value = "查看学校信息")
 	@GetMapping("findAllSchool")
-	public MsgResponse findAllSchool(){
+	public MsgResponse findAllSchool() {
 		try {
-			List<School> list=schoolService.findAll();
+			List<School> list = schoolService.findAll();
 			return MsgResponse.success("success", list);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
 		}
-		
+
 	}
-	@ApiOperation(value="保存或更新学校信息",notes="如果参数中包含id，说明这是一个更新操作，如果没有，这是一个保存操作")
+
+	@ApiOperation(value = "保存或更新学校信息", notes = "如果参数中包含id，说明这是一个更新操作，如果没有，这是一个保存操作")
 	@PostMapping("saveOrUpdateSchool")
-	public MsgResponse saveOrUpdateSchool(School school){
+	public MsgResponse saveOrUpdateSchool(School school) {
 		try {
-			if(school!=null && school.getId()!=null){
+			if (school != null && school.getId() != null) {
 				schoolService.update(school);
-			return MsgResponse.success("更新成功", null);
-			}else{
+				return MsgResponse.success("更新成功", null);
+			} else {
 				schoolService.save(school);
 			}
 			return MsgResponse.success("保存成功", null);
@@ -51,9 +53,10 @@ public class SchoolController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	@ApiOperation(value="通过id删除学校信息")
+
+	@ApiOperation(value = "通过id删除学校信息")
 	@GetMapping("deleteByIdSchool")
-	public MsgResponse deleteByIdCourse(long id){
+	public MsgResponse deleteByIdCourse(long id) {
 		try {
 			schoolService.deleteById(id);
 			return MsgResponse.success("删除成功", null);
@@ -63,22 +66,5 @@ public class SchoolController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

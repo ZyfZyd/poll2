@@ -11,19 +11,18 @@ import com.briup.apps.poll.bean.SchoolExample;
 import com.briup.apps.poll.dao.SchoolMapper;
 import com.briup.apps.poll.service.ISchoolService;
 
-
 @Service
-public class SchoolServiceImpl implements ISchoolService{
+public class SchoolServiceImpl implements ISchoolService {
 	@Autowired
 	private SchoolMapper schoolMapper;
-	
-	//查询
+
+	// 查询
 	@Override
 	public List<School> findAll() throws Exception {
 		// TODO Auto-generated method stub
-		//创建空模板
+		// 创建空模板
 		SchoolExample example = new SchoolExample();
-		//调用QBE查询，并将查询结果返回
+		// 调用QBE查询，并将查询结果返回
 		return schoolMapper.selectByExampleWithBLOBs(example);
 	}
 
@@ -38,7 +37,7 @@ public class SchoolServiceImpl implements ISchoolService{
 	@Override
 	public void batchDelete(List<Long> ids) throws Exception {
 		// TODO Auto-generated method stub
-		for(long id:ids){
+		for (long id : ids) {
 			schoolMapper.deleteByPrimaryKey(id);
 		}
 	}

@@ -12,22 +12,20 @@ import com.briup.apps.poll.dao.GradeMapper;
 import com.briup.apps.poll.dao.extend.GradeVMMapper;
 import com.briup.apps.poll.service.IGradeService;
 
-
-
-
 @Service
-public class GradeServiceImpl implements IGradeService{
+public class GradeServiceImpl implements IGradeService {
 	@Autowired
 	private GradeMapper gradeMapper;
 	@Autowired
 	private GradeVMMapper gradeVMMapper;
-	//查询
+
+	// 查询
 	@Override
 	public List<Grade> findAll() throws Exception {
 		// TODO Auto-generated method stub
-		//创建空模板
+		// 创建空模板
 		GradeExample example = new GradeExample();
-		//调用QBE查询，并将查询结果返回
+		// 调用QBE查询，并将查询结果返回
 		return gradeMapper.selectByExampleWithBLOBs(example);
 	}
 
@@ -65,11 +63,9 @@ public class GradeServiceImpl implements IGradeService{
 
 	@Override
 	public void batchDelete(List<Long> ids) throws Exception {
-		for(long id:ids){
+		for (long id : ids) {
 			gradeMapper.deleteByPrimaryKey(id);
-		
-	}
-	}
-	}
 
-
+		}
+	}
+}
