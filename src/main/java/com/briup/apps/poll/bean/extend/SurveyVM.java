@@ -6,6 +6,7 @@ import com.briup.apps.poll.bean.User;
 public class SurveyVM {
 	private Long id;
 	private String status;
+	private Double average;
 	private String code;
 	private String surveyDate;
 	private QuestionnaireVM questionnaireVM;//所属问卷信息
@@ -23,6 +24,13 @@ public class SurveyVM {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	
+	public Double getAverage() {
+		return average;
+	}
+	public void setAverage(Double average) {
+		this.average = average;
 	}
 	public String getCode() {
 		return code;

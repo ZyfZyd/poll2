@@ -14,4 +14,6 @@ public interface IAnswersService {
 		List<AnswersVM> findAllAnswersVM() throws Exception;
 		//提交或者更新答卷信息
 		void saveOrUpdate(Answers answers) throws Exception;
+		//通过Surver的id查询出该课调下的答卷信息
+		List<Answers> findAnswersBySurverId(long surveyId) throws Exception;
 }

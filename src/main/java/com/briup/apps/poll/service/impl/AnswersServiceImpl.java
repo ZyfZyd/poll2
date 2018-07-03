@@ -50,4 +50,12 @@ public class AnswersServiceImpl implements IAnswersService{
 		}
 	}
 
+	@Override
+	public List<Answers> findAnswersBySurverId(long surveyId) throws Exception {
+		// TODO Auto-generated method stub
+		AnswersExample example = new AnswersExample();
+		example.createCriteria().andSurveyIdEqualTo(surveyId);
+		return answersMapper.selectByExample(example);
+	}
+
 }

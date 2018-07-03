@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.briup.apps.poll.bean.Answers;
 import com.briup.apps.poll.bean.Survey;
 import com.briup.apps.poll.bean.extend.SurveyVM;
+import com.briup.apps.poll.service.IAnswersService;
 import com.briup.apps.poll.service.ISurveyService;
 import com.briup.apps.poll.util.MsgResponse;
 
@@ -22,6 +24,8 @@ import io.swagger.annotations.ApiOperation;
 public class SurveyController {
 	@Autowired
 	private ISurveyService surveyService;
+	@Autowired
+	private IAnswersService answersService;
 	
 	@ApiOperation(value="查询课调信息")
 	@GetMapping("findAllSurvey")
@@ -188,10 +192,6 @@ public class SurveyController {
 					return MsgResponse.error("课调状态不合法："+surveyVM.getStatus());
 				}
 				
-//				List<SurveyVM> list=surveyService.findAllSurveyVM();
-				
-//				return MsgResponse.success("success",surveyVM);
-				
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -199,7 +199,40 @@ public class SurveyController {
 		}
 	}
 	
-	
+	@GetMapping("toCheckSurvey")
+	@ApiOperation(value="去审核课调",notes="返回课调基本信息，以及课调中的主观题答案")
+	public MsgResponse toCheckSurvey(long id){
+			try {
+				//通过id查询课调信息
+				SurveyVM surveyVM=surveyService.findAllById(id);
+				//根据id查询该课调下的所有的答卷
+				List<Answers> answers = answersService.findAnswersBySurverId(id);
+				//根据答卷计算出平均分
+				double total = 0.0;
+				for(Answers answer:answers){
+					String selectStr=answer.getSelections();
+					if(selectStr!=null){
+						String[] arr = selectStr.split("[|]");
+						double singleTotal = 0.0;
+						for(String a : arr){
+							int select=Integer.parseInt(a);
+							singleTotal += select;
+						}
+						double singleAverage = singleTotal/arr.length;
+						total += singleAverage;
+						
+					}
+				}
+				double average=total / answers.size();
+				//设置平均分
+				surveyVM.setAverage(average);
+				return MsgResponse.success("success", surveyVM);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
 	
 	
 	
