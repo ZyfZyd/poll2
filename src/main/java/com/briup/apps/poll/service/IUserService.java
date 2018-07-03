@@ -15,4 +15,5 @@ public interface IUserService {
 	void save(User user) throws Exception;
 	//修改
 	void update(User user) throws Exception;
+	
 }

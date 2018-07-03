@@ -67,7 +67,6 @@ public class ClazzController {
 		}
 		
 	}
-		
 		@GetMapping("findAllClazzVM")
 		@ApiOperation(value="查询所有的班级信息",notes="每个班级信息中所属年级和班级所属的班主任的信息")
 		public MsgResponse findAllClazzVM(){
