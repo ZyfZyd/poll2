@@ -57,5 +57,4 @@ public class AnswersServiceImpl implements IAnswersService {
 		example.createCriteria().andSurveyIdEqualTo(surveyId);
 		return answersMapper.selectByExample(example);
 	}
-
 }

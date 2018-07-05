@@ -30,7 +30,7 @@ public class CourseServiceImpl implements ICourseService {
 	public List<Course> query(String keywords) throws Exception {
 		// TODO Auto-generated method stub
 		CourseExample example = new CourseExample();
-		example.createCriteria().andNameLike(keywords);
+		example.createCriteria().andNameLike("%"+keywords+"%");
 		return courseMapper.selectByExampleWithBLOBs(example);
 	}
 

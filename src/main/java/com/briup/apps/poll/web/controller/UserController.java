@@ -1,5 +1,6 @@
 package com.briup.apps.poll.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,5 +66,36 @@ public class UserController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
+	
+	@ApiOperation("通过关键字查询教师信息")
+	@GetMapping("findAllUserBykeywords")
+	public MsgResponse findAllUserBykeywords(String keywords) {
+		try {
+			List<User> list = userService.query(keywords);
+			return MsgResponse.success("success", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
 
+	}
+	
+	@ApiOperation(value = "通过id组批量删除班级信息")
+	@PostMapping("batchDelete")
+	public MsgResponse batchDelete(long[] ids) {
+		try {
+			List<Long> idList = new ArrayList<>();
+			for (long id : ids) {
+				idList.add(id);
+			}
+			userService.batchDelete(idList);
+			return MsgResponse.success("批量删除成功", null);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+
+		}
+
+	}
 }

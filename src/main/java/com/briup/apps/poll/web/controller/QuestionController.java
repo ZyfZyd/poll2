@@ -55,6 +55,19 @@ public class QuestionController {
 
 	}
 
+	
+	@ApiOperation("通过关键字查询问题信息")
+	@GetMapping("findAllQuestionBykeywords")
+	public MsgResponse findAllQuestionBykeywords(String keywords) {
+		try {
+			List<Question> list = questionService.query(keywords);
+			return MsgResponse.success("success", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
 	@ApiOperation(value = "删除题目信息", notes = "删除题目的信息以及该题目下所有的选项信息")
 	@GetMapping("deleteByIdQuestion")
 	public MsgResponse deleteByIdQuestion(long id) {

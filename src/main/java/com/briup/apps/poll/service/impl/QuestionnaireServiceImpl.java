@@ -80,4 +80,13 @@ public class QuestionnaireServiceImpl implements IQuestionnaireService {
 		}
 	}
 
+	@Override
+	public List<Questionnaire> query(String keywords) throws Exception {
+		// TODO Auto-generated method stub
+		QuestionnaireExample example = new QuestionnaireExample();
+		example.createCriteria().andNameLike("%"+keywords+"%");
+		return questionnaireMapper.selectByExample(example);
+	}
 }
+
+

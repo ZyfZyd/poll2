@@ -13,7 +13,7 @@ import com.briup.apps.poll.service.IUserService;
 @Service
 public class UserServiceImpl implements IUserService {
 	@Autowired
-	private UserMapper answersMapper;
+	private UserMapper userMapper;
 
 	@Override
 	public List<User> findAll() throws Exception {
@@ -21,25 +21,41 @@ public class UserServiceImpl implements IUserService {
 		// 创建空模板
 		UserExample example = new UserExample();
 		// 调用QBE查询，并将查询结果返回
-		return answersMapper.selectByExample(example);
+		return userMapper.selectByExample(example);
 	}
 
 	@Override
 	public void deleteById(long id) throws Exception {
 		// TODO Auto-generated method stub
-		answersMapper.deleteByPrimaryKey(id);
+		userMapper.deleteByPrimaryKey(id);
 	}
 
 	@Override
 	public void save(User user) throws Exception {
 		// TODO Auto-generated method stub
-		answersMapper.insert(user);
+		userMapper.insert(user);
 	}
 
 	@Override
 	public void update(User user) throws Exception {
 		// TODO Auto-generated method stub
-		answersMapper.updateByPrimaryKey(user);
+		userMapper.updateByPrimaryKey(user);
 	}
 
+	@Override
+	public void batchDelete(List<Long> ids) {
+		// TODO Auto-generated method stub
+		for (long id : ids) {
+			userMapper.deleteByPrimaryKey(id);
+
+		}
+	}
+
+	@Override
+	public List<User> query(String keywords) throws Exception {
+		// TODO Auto-generated method stub
+		UserExample example = new UserExample();
+		example.createCriteria().andNameLike("%"+keywords+"%");
+		return userMapper.selectByExample(example);
+	}
 }

@@ -24,7 +24,7 @@ public class GradeController {
 	@Autowired
 	private IGradeService gradeService;
 
-	@ApiOperation(value = "查询所有年级信息", notes = "每个年级所属的学校")
+	@ApiOperation(value = "级联查询所有年级信息", notes = "每个年级所属的学校")
 	@GetMapping("findAllGradeVM")
 	public MsgResponse findAllGradeVM() {
 		try {
@@ -42,6 +42,19 @@ public class GradeController {
 	public MsgResponse findAllGrade() {
 		try {
 			List<Grade> list = gradeService.findAll();
+			return MsgResponse.success("success", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+
+	}
+	
+	@ApiOperation("通过关键字查询年级信息")
+	@GetMapping("findAllGradeBykeywords")
+	public MsgResponse findAllGradeBykeywords(String keywords) {
+		try {
+			List<Grade> list = gradeService.query(keywords);
 			return MsgResponse.success("success", list);
 		} catch (Exception e) {
 			e.printStackTrace();

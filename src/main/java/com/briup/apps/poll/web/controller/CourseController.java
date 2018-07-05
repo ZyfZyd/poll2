@@ -53,6 +53,17 @@ public class CourseController {
 		}
 
 	}
+	@ApiOperation("通过关键字查询课程信息")
+	@GetMapping("findAllCourseBykeywords")
+	public MsgResponse findAllCourseBykeywords(String keywords) {
+		try {
+			List<Course> list = courseService.query(keywords);
+			return MsgResponse.success("success", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
 
 	@ApiOperation(value = "通过id删除课程信息")
 	@GetMapping("deleteByIdCourse")

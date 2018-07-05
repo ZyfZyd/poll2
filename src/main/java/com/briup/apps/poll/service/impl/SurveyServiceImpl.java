@@ -81,4 +81,12 @@ public class SurveyServiceImpl implements ISurveyService {
 		return surveyVMMapper.selectByStatus(status);
 	}
 
-}
+	@Override
+	public List<Survey> query(String keywords) throws Exception {
+			// TODO Auto-generated method stub
+			SurveyExample example = new SurveyExample();
+			example.createCriteria().andStatusLike("%"+keywords+"%");
+			return surveyMapper.selectByExample(example);
+		}
+	}
+

@@ -38,9 +38,9 @@ public class QuestionServiceImpl implements IQuestionService {
 	public List<Question> query(String keywords) throws Exception {
 		// TODO Auto-generated method stub
 		QuestionExample example = new QuestionExample();
-		example.createCriteria().andNameLike(keywords);
-		return questionMapper.selectByExample(example);
-	}
+			example.createCriteria().andNameLike("%"+keywords+"%");
+			return questionMapper.selectByExample(example);
+		}
 
 	// 通过id删除
 	@Override

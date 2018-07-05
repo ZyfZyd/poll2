@@ -23,4 +23,7 @@ public interface IClazzService {
 
 	// 批量删除班级信息
 	void batchDelete(List<Long> ids) throws Exception;
+	
+	// 通过关键字查询年级信息
+	List<Clazz> query(String keywords) throws Exception;
 }

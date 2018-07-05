@@ -7,8 +7,8 @@ import com.briup.apps.poll.bean.extend.AnswersVM;
 
 public interface IAnswersService {
 	// 查询所有答卷信息
-	List<Answers> findAll() throws Exception;
-
+	List<Answers> findAll() throws Exception;	
+	
 	// 通过id删除答卷信息
 	void deleteById(long id) throws Exception;
 

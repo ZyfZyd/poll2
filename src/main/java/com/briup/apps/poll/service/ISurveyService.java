@@ -9,6 +9,10 @@ public interface ISurveyService {
 	// 查询课调信息
 	List<Survey> findAll() throws Exception;
 
+	// 通过关键字查询课调信息
+	List<Survey> query(String keywords) throws Exception;
+			
+	
 	// 删除
 	void deleteById(long id) throws Exception;
 

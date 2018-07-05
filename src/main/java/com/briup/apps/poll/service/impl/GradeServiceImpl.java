@@ -33,7 +33,7 @@ public class GradeServiceImpl implements IGradeService {
 	public List<Grade> query(String keywords) throws Exception {
 		// TODO Auto-generated method stub
 		GradeExample example = new GradeExample();
-		example.createCriteria().andNameLike(keywords);
+		example.createCriteria().andNameLike("%"+keywords+"%");
 		return gradeMapper.selectByExampleWithBLOBs(example);
 	}
 

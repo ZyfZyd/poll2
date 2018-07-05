@@ -22,4 +22,5 @@ public interface ICourseService {
 
 	// 通过多个id批量删除课程信息
 	void batchDelete(List<Long> ids) throws Exception;
+	
 }

@@ -60,4 +60,12 @@ public class ClazzServiceImpl implements IClazzService {
 		}
 	}
 
+	@Override
+	public List<Clazz> query(String keywords) throws Exception {
+		// TODO Auto-generated method stub
+		ClazzExample example = new ClazzExample();
+		example.createCriteria().andNameLike("%"+keywords+"%");
+		return clazzMapper.selectByExampleWithBLOBs(example);
+	}
+
 }

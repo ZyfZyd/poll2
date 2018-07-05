@@ -40,6 +40,19 @@ public class SurveyController {
 		}
 
 	}
+	
+	@ApiOperation("通过关键字查询课调信息")
+	@GetMapping("findAllSurveyBykeywords")
+	public MsgResponse findAllSurveyBykeywords(String keywords) {
+		try {
+			List<Survey> list = surveyService.query(keywords);
+			return MsgResponse.success("success", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+
+	}
 
 	@ApiOperation(value = "保存或更新", notes = "只需要输入courseId,clazzId,userId,questionnairsId")
 	@PostMapping("saveOrUpdateSurvey")
@@ -82,7 +95,7 @@ public class SurveyController {
 	}
 
 	@GetMapping("findAllSurveyById")
-	@ApiOperation(value = "查询所有的课调信息", notes = "级联查询课调关联的课程、班级、讲师、问卷")
+	@ApiOperation(value = "通过id查询所有的课调信息", notes = "级联查询课调关联的课程、班级、讲师、问卷")
 	public MsgResponse findAllSurveyById(long id) {
 		try {
 			List<SurveyVM> list = surveyService.findAllSurveyVM();

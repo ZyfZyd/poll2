@@ -64,6 +64,18 @@ public class QuestionnaireController {
 		}
 	}
 
+	@ApiOperation("通过关键字查询问卷信息")
+	@GetMapping("findAllQuestionnaireBykeywords")
+	public MsgResponse findAllQuestionnaireBykeywords(String keywords) {
+		try {
+			List<Questionnaire> list = questionnaireService.query(keywords);
+			return MsgResponse.success("success", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	
 	@ApiOperation(value = "保存和修改问卷信息", notes = "级联删除问卷和问题的关系")
 	@PostMapping("saveOrUpdateQuestionnaire")
 	public MsgResponse saveOrUpdateQuestionnaire(Questionnaire questionnaire, long[] questionIds) {

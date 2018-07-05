@@ -9,6 +9,9 @@ public interface IQuestionnaireService {
 	// 查询
 	List<Questionnaire> findAll() throws Exception;
 
+	// 通过关键字查询问卷信息
+	List<Questionnaire> query(String keywords) throws Exception;
+	
 	// 删除
 	void deleteById(long id) throws Exception;
 

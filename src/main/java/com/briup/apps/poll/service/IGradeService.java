@@ -25,5 +25,6 @@ public interface IGradeService {
 	void update(Grade grade) throws Exception;
 
 	List<GradeVM> findAllGradeVM() throws Exception;
+	
 
 }
